@@ -43,7 +43,7 @@ class StatusesController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:status, :status, :like)
+    params.require(:status).permit(:user, :status, :like)
   end
 
 end
