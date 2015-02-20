@@ -27,6 +27,7 @@ class StatusesController < ApplicationController
 
   def create
     @status = Status.new(status_params)
+    @status.likes = 0
     if @status.save
       redirect_to statuses_path, notice: 'Status was successfully created.'
     else
@@ -40,10 +41,17 @@ class StatusesController < ApplicationController
     redirect_to statuses_path, notice: "Status destroyed!"
   end
 
+  def counter
+    @status = Status.find(params[:id])
+    @status.likes += 1
+    @status.save
+    redirect_to statuses_path
+  end
+
   private
 
   def status_params
-    params.require(:status).permit(:user, :status, :like)
+    params.require(:status).permit(:user, :status, :likes)
   end
 
 end

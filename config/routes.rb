@@ -7,6 +7,8 @@ resources :statuses
   # You can have the root of your site routed with "root"
 root 'statuses#index'
 
+post "statuses/:id/counter" => "statuses#counter", as: :counter_count
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
