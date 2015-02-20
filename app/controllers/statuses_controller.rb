@@ -1,6 +1,7 @@
 class StatusesController < ApplicationController
+
   def index
-    @status = Status.all
+    @statuses = Status.all
   end
 
   def show
@@ -14,7 +15,7 @@ class StatusesController < ApplicationController
   def update
     @status = Status.find(params[:id])
     if @status.update(status_params)
-      redirect_to @status
+      redirect_to statuses_path, notice: "Status was updated"
     else
       render:edit
     end
@@ -27,7 +28,7 @@ class StatusesController < ApplicationController
   def create
     @status = Status.new(status_params)
     if @status.save
-      redirect_to statuss_path, notice: 'Status was successfully created.'
+      redirect_to statuses_path, notice: 'Status was successfully created.'
     else
       render:new
     end
@@ -36,13 +37,10 @@ class StatusesController < ApplicationController
   def destroy
     @status = Status.find(params[:id])
     @status.destroy
-    redirect_to status_path
+    redirect_to statuses_path, notice: "Status destroyed!"
   end
 
   private
-  def status_status
-    @statuses = Status.find(params[:id])
-  end
 
   def status_params
     params.require(:status).permit(:status, :status, :like)
