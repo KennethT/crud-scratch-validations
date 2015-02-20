@@ -27,7 +27,6 @@ class StatusesController < ApplicationController
 
   def create
     @status = Status.new(status_params)
-    @status.likes = 0
     if @status.save
       redirect_to statuses_path, notice: 'Status was successfully created.'
     else

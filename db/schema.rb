@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150220184339) do
   create_table "statuses", force: :cascade do |t|
     t.text    "status"
     t.string  "user"
-    t.integer "likes"
+    t.integer "likes",  default: 0
   end
 
 end
